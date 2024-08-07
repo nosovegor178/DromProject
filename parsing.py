@@ -9,8 +9,8 @@ def download_file(data, filename, folder='json'):
     sanitized_filename = sanitize_filename(filename)
     path_to_file = os.path.join(folder, sanitized_filename)
     os.makedirs(folder, exist_ok=True)
-    with open(path_to_file, 'w') as file:
-        json.dump(data, file)
+    with open(path_to_file, 'w', encoding='utf8') as file:
+        json.dump(data, file, ensure_ascii=False)
         
 
 
