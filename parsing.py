@@ -5,13 +5,16 @@ from pathvalidate import sanitize_filename
 import json
 
 
-def download_file(data, filename, folder='json'):
+def download_car_cards(car_cards, filename, folder):
     sanitized_filename = sanitize_filename(filename)
     path_to_file = os.path.join(folder, sanitized_filename)
     os.makedirs(folder, exist_ok=True)
     with open(path_to_file, 'w', encoding='utf8') as file:
-        json.dump(data, file, ensure_ascii=False)
-        
+        json.dump(car_cards, file, ensure_ascii=False)
+
+
+def download_image(filename, folder):
+    sanitized_filename = sanitize_filename(filename)
 
 
 def parse_car_cards(car_kind):
@@ -51,4 +54,4 @@ if __name__ == '__main__':
     for car_kind in car_kinds:
         parsed_cards = parse_car_cards(car_kind)
         print(len(parsed_cards))
-        download_file(parsed_cards, f'{car_kind}.json')
+        download_car_cards(parsed_cards, f'{car_kind}.json', car_kind)
