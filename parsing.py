@@ -13,8 +13,11 @@ def download_car_cards(car_cards, filename, folder):
         json.dump(car_cards, file, ensure_ascii=False)
 
 
-def download_image(filename, folder):
-    sanitized_filename = sanitize_filename(filename)
+# def download_image(filename, car_kind):
+#     sanitized_filename = sanitize_filename(filename)
+#     os.chdir(car_kind)
+#     os.makedirs('media', exist_ok=True)
+#     os.chdir(os.pardir)
 
 
 def parse_car_cards(car_kind):
@@ -22,7 +25,8 @@ def parse_car_cards(car_kind):
     url = f'https://spb.drom.ru/{car_kind}/all/'
     params = {
         'ph': 1,
-        'unsold': 1
+        'unsold': 1,
+        'mv': 0.7
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
@@ -51,6 +55,8 @@ def parse_car_cards(car_kind):
 
 if __name__ == '__main__':
     car_kinds = ['acura', 'baic', 'bmw', 'chevrolet', 'ford', 'honda']
+    os.makedirs('cars', exist_ok=True)
+    os.chdir('cars')
     for car_kind in car_kinds:
         parsed_cards = parse_car_cards(car_kind)
         print(len(parsed_cards))
