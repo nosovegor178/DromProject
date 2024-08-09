@@ -13,15 +13,21 @@ def download_car_cards(car_cards, filename, folder):
         json.dump(car_cards, file, ensure_ascii=False)
 
 
-# def download_image(filename, car_kind):
-#     sanitized_filename = sanitize_filename(filename)
-#     os.chdir(car_kind)
-#     os.makedirs('media', exist_ok=True)
-#     os.chdir(os.pardir)
+def download_image(car_kind, filename, image_url):
+    sanitized_filename = sanitize_filename(filename)
+    os.chdir(car_kind)
+    os.makedirs('media', exist_ok=True)
+    path_to_file = os.path.join('media', sanitized_filename)
+    response = requests.get(image_url)
+    response.raise_for_status()
+    with open(path_to_file, 'wb') as file:
+        file.write(response.content)
+    os.chdir(os.pardir)
 
 
 def parse_car_cards(car_kind):
     parsed_cards = []
+    image_urls = []
     url = f'https://spb.drom.ru/{car_kind}/all/'
     params = {
         'ph': 1,
@@ -50,7 +56,9 @@ def parse_car_cards(car_kind):
         except IndexError:
             print('Без пробега')
         parsed_cards.append(parsed_card)
-    return parsed_cards
+        image_urls.append(soup.find('div', class_='css-10vnevh e1pqv6mt0').find(
+            'div', class_='css-aqyz46 e1e9ee560').find('img')['src'])
+    return parsed_cards, image_urls
 
 
 if __name__ == '__main__':
@@ -58,6 +66,8 @@ if __name__ == '__main__':
     os.makedirs('cars', exist_ok=True)
     os.chdir('cars')
     for car_kind in car_kinds:
-        parsed_cards = parse_car_cards(car_kind)
+        parsed_cards = parse_car_cards(car_kind)[0]
         print(len(parsed_cards))
         download_car_cards(parsed_cards, f'{car_kind}.json', car_kind)
+        for image_number, image_url in enumerate(parse_car_cards(car_kind)[1]):
+            download_image(car_kind, f'{car_kind}_{image_number}.png', image_url)
