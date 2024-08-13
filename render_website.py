@@ -22,6 +22,7 @@ def on_reload():
     # car_images = []
     for root, dirs, files in os.walk('cars'):
         for dir in dirs:
+            print(dir)
             if dir != 'media':
                 marks.append(dir)
         for file in files:
@@ -31,9 +32,8 @@ def on_reload():
             #     car_images.append(file)
     for page_number, car_file in enumerate(car_files):
         path, suffix = os.path.splitext(car_file)
-        car_info = codecs.open(f"cars/{path}/{car_file}", "r", "utf_8_sig")
-        cars_params = car_info.read()
-        car_info.close()
+        with codecs.open(f"cars/{path}/{car_file}", "r", "utf_8_sig") as car_info:
+            cars_params = car_info.read()
         cars_params = json.loads(cars_params)
         filename, suffix = os.path.splitext(car_file)
         rendered_page = template.render(
