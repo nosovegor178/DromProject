@@ -22,7 +22,6 @@ def on_reload():
     # car_images = []
     for root, dirs, files in os.walk('cars'):
         for dir in dirs:
-            print(dir)
             if dir != 'media':
                 marks.append(dir)
         for file in files:
