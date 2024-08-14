@@ -18,11 +18,14 @@ def download_image(car_kind, filename, image_url):
     os.chdir(car_kind)
     os.makedirs('media', exist_ok=True)
     path_to_file = os.path.join('media', sanitized_filename)
-    response = requests.get(image_url)
-    response.raise_for_status()
-    with open(path_to_file, 'wb') as file:
-        file.write(response.content)
-    os.chdir(os.pardir)
+    try:
+        response = requests.get(image_url)
+        response.raise_for_status()
+        with open(path_to_file, 'wb') as file:
+            file.write(response.content)
+        os.chdir(os.pardir)
+    except requests.exceptions.HTTPError:
+        print('Нет доступа к изображению')
 
 
 def parse_car_cards(car_kind):
