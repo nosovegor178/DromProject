@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>купимашину.рф</title>
-    <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
@@ -41,21 +41,16 @@
             Автомобили по маркам
         </div>
         <div class="makes__cards">
-            <a href="#" class="makes__card ">
-                <p class="makes__card__text">Audi</p>
-            </a>
-            <a href="#" class="makes__card">
-                <p class="makes__card__text">Audi</p>
-            </a>
-            <a href="#" class="makes__card">
-                <p class="makes__card__text">Audi</p>
-            </a>
-            <a href="#" class="makes__card">
-                <p class="makes__card__text">Audi</p>
-            </a>
-            <a href="#" class="makes__card">
-                <p class="makes__card__text">Audi</p>
-            </a>
+            {% for mark in marks %}
+                <a href="{{ mark }}.html" class="makes__card"><p class="makes__card__text">{{ mark }}</p></a> 
+            {% endfor %}
+            <!-- {% for mark in marks %}
+                {% if mark == marks[page_number] %}
+                  <li class="page-item active"><a class="page-link" href="{{ mark }}.html">{{ mark }}</a></li>
+                {% else %}
+                  <li class="page-item"><a class="page-link" href="{{ mark }}.html">{{ mark }}</a></li>
+                {% endif %}
+            {% endfor %} -->
         </div>
     </div>
     <div class="cars">
@@ -64,7 +59,7 @@
         </div>
         <div class="cars_cards">
             <a href="#" class="cars__card">
-                <img src="images/background-1.jpg" alt="" class="cars__card__image">
+                <img src="../images/background-1.jpg" alt="" class="cars__card__image">
                 <div class="cars__card__column__main">
                     <div class="cars__card__title">
                         Lada Niva

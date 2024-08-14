@@ -9,22 +9,23 @@ import json
 def download_car_cards(car_cards, filename, folder):
     sanitized_filename = sanitize_filename(filename)
     path_to_file = os.path.join(folder, sanitized_filename)
-    os.makedirs(folder, exist_ok=True)
     with open(path_to_file, 'w', encoding='utf8') as file:
         json.dump(car_cards, file, ensure_ascii=False)
 
 
 def download_image(car_kind, filename, image_url):
     sanitized_filename = sanitize_filename(filename)
-    os.makedirs(car_kind, exist_ok=True)
     os.chdir(car_kind)
     os.makedirs('media', exist_ok=True)
     path_to_file = os.path.join('media', sanitized_filename)
-    response = requests.get(image_url)
-    response.raise_for_status()
-    with open(path_to_file, 'wb') as file:
-        file.write(response.content)
-    os.chdir(os.pardir)
+    try:
+        response = requests.get(image_url)
+        response.raise_for_status()
+        with open(path_to_file, 'wb') as file:
+            file.write(response.content)
+        os.chdir(os.pardir)
+    except requests.exceptions.HTTPError:
+        print('Нет доступа к изображению')
 
 
 def parse_car_cards(car_kind):
@@ -51,12 +52,22 @@ def parse_car_cards(car_kind):
                 parsed_card = {
                         'model': title[0],
                         'year': title[1],
+                        'drom_link': car_card.find('div', class_="css-jlnpz8 e10gq2qb0").find('a')['href'],
                         'price': car_card.find('span', class_="css-46itwz e162wx9x0").text,
-                        'horsepower': engine_power_info[1][:-1],
-                        'engine_info': f'{engine_power_info[0]}, {auto_info[1]}',
-                        'transmission': auto_info[2],
-                        'drive': auto_info[3],
+                        'engine_info': f'{engine_power_info[0]}, {auto_info[1]}'
                         }
+                try:
+                    parsed_card['horsepower'] = engine_power_info[1][:-1]
+                except IndexError:
+                    print('Л. с. не указаны')
+                try:
+                    parsed_card['transmission'] = auto_info[2]
+                except IndexError:
+                    print('Коробка передач не указана')
+                try:
+                    parsed_card['drive'] = auto_info[3]
+                except IndexError:
+                    print('Привод не указан')
                 try:
                     parsed_card['mileage'] = auto_info[4]
                 except IndexError:
@@ -68,12 +79,17 @@ def parse_car_cards(car_kind):
     return parsed_cards, image_urls
 
 
-if __name__ == '__main__':
+def main():
     car_kinds = ['acura', 'baic', 'citroen', 'belgee', 'porsche', 'jaguar']
     os.makedirs('cars', exist_ok=True)
     os.chdir('cars')
     for car_kind in car_kinds:
+        os.makedirs(car_kind, exist_ok=True)
         parsed_cards = parse_car_cards(car_kind)[0]
         download_car_cards(parsed_cards, f'{car_kind}.json', car_kind)
         for image_number, image_url in enumerate(parse_car_cards(car_kind)[1]):
             download_image(car_kind, f'{car_kind}_{image_number+1}.png', image_url)
+
+
+if __name__ == '__main__':
+    main()
