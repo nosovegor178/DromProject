@@ -30,7 +30,6 @@ def download_image(car_kind, filename, image_url):
 
 def parse_car_cards(car_kind):
     parsed_cards = []
-    image_urls = []
     params = {"ph": 1, "unsold": 1, "mv": 0.7}
     for page_number in count(1):
         url = f"https://spb.drom.ru/{car_kind}/all/page{page_number}"
@@ -44,9 +43,7 @@ def parse_car_cards(car_kind):
                 "div", attrs={"data-ftid": "bulls-list_bull"}
             )
             for car_card in car_cards:
-                title = car_card.find("h3", class_="css-16kqa8y efwtv890").text.split(
-                    ","
-                )
+                title = car_card.find("h3", class_="css-16kqa8y efwtv890").text.split(",")
                 auto_info = car_card.find(
                     "div", class_="css-1fe6w6s e162wx9x0"
                 ).text.split(",")
@@ -59,6 +56,10 @@ def parse_car_cards(car_kind):
                     ).find("a")["href"],
                     "price": car_card.find("span", class_="css-46itwz e162wx9x0").text,
                     "engine_info": f"{engine_power_info[0]}, {auto_info[1]}",
+                    "image_url": car_card.find("div", attrs={"data-ftid": "bull_image"})
+                    .find("div", attrs={"data-first-photo": "true"})
+                    .find("div", class_="css-aqyz46 e1e9ee560")
+                    .find("img")["src"]
                 }
                 try:
                     parsed_card["horsepower"] = engine_power_info[1][:-1]
@@ -77,13 +78,7 @@ def parse_car_cards(car_kind):
                 except IndexError:
                     print("Без пробега")
                 parsed_cards.append(parsed_card)
-                image_urls.append(
-                    car_card.find("div", attrs={"data-ftid": "bull_image"})
-                    .find("div", attrs={"data-first-photo": "true"})
-                    .find("div", class_="css-aqyz46 e1e9ee560")
-                    .find("img")["src"]
-                )
-    return parsed_cards, image_urls
+    return parsed_cards
 
 
 def main():
@@ -92,10 +87,12 @@ def main():
     os.chdir("cars")
     for car_kind in car_kinds:
         os.makedirs(car_kind, exist_ok=True)
-        parsed_cards = parse_car_cards(car_kind)[0]
-        download_car_cards(parsed_cards, f"{car_kind}.json", car_kind)
-        for image_number, image_url in enumerate(parse_car_cards(car_kind)[1]):
-            download_image(car_kind, f"{car_kind}_{image_number+1}.png", image_url)
+        parsed_cards = parse_car_cards(car_kind)
+        for card_number, parsed_card in enumerate(parsed_cards):
+            filename = f'{car_kind}_{card_number+1}.png'
+            download_image(car_kind, filename, parsed_card["image_url"])
+            parsed_card["image_url"] = f"cars/{car_kind}/media/{filename}"
+        download_car_cards(parsed_cards, f'{car_kind}.json', car_kind)
 
 
 if __name__ == "__main__":

@@ -22,7 +22,6 @@ def on_reload():
 
     marks = []
     car_files = []
-    all_car_images = []
     for root, dirs, files in os.walk("cars"):
         car_images = []
         for dir in dirs:
@@ -31,11 +30,6 @@ def on_reload():
         for file in files:
             if file.endswith(".json"):
                 car_files.append(file)
-            else:
-                car_images.append(file)
-        car_images = sorted(car_images, key=get_num)
-        if car_images != []:
-            all_car_images.append(car_images)
     for car_file in (car_files):
         path, suffix = os.path.splitext(car_file)
         new_path = f"{pages_path}/{path}"
@@ -53,14 +47,12 @@ def on_reload():
                 marks=marks,
                 filename=filename,
                 cars=car_params,
-                car_images=all_car_images,
             )
             with open(f"{new_path}/{filename}{page_number}.html", "w", encoding="utf8") as file:
                 file.write(rendered_page)
 
     # print(marks)
     # print(car_files)
-    # print(all_car_images)
     print("Site rebuilt")
 
 

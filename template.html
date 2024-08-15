@@ -91,25 +91,51 @@
                 </div>
             {% endfor %}
     </div>
-    <nav class="pagination">
-        <a href="" class="pagination__number">
-            <div class="pagination__number__circle">
-            </div>
-            1
-        </a>
-        <a href="" class="pagination__number">
-            2
-        </a>
-        <a href="" class="pagination__number">
-            3
-        </a>
+    <!-- <nav class="pagination">
+
+        {% if page_number > 1 and page_number < pages_count %}
+            <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
+            <a href="{{ filename }}{{ page_number }}.html" class="pagination__number">{{ page_number }}</a>
+            <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
+        {% elif page_number == pages_count %}
+            <a href="{{ filename }}{{ page_number-2 }}.html" class="pagination__number">{{ page_number-2 }}</a>
+            <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
+            <a href="{{ filename }}{{ page_number }}.html" class="pagination__number">{{ page_number }}</a>
+        {% else %}
+            <a href="{{ filename }}{{ page_number }}.html" class="pagination__number">{{ page_number }}</a>
+            <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
+            <a href="{{ filename }}{{ page_number+2 }}.html" class="pagination__number">{{ page_number+2 }}</a>
+        {% endif %}
         <div class="pagination__number">
             ...
         </div>
-        <a href="" class="pagination__number">
-            100
+        <a href="{{ filename }}{{ pages_count }}.html" class="pagination__number">
+            {{ pages_count }}
         </a>
-    </nav>
+    </nav> -->
+        {% if page_number > 1 and page_number < pages_count %}
+            <nav class="pagination">
+                <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
+                <a href="{{ filename }}{{ page_number }}.html" class="pagination__number active">{{ page_number }}</a>
+                <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
+                <div class="pagination__number">...</div>
+                <a href="{{ filename }}{{ pages_count }}.html" class="pagination__number">{{ pages_count }}</a>
+            </nav>
+        {% elif page_number == pages_count %}
+            <nav class="pagination last">
+                <a href="{{ filename }}{{ page_number-2 }}.html" class="pagination__number">{{ page_number-2 }}</a>
+                <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
+                <a href="{{ filename }}{{ page_number }}.html" class="pagination__number active">{{ page_number }}</a>
+            </nav>
+        {% else %}
+            <nav class="pagination">
+                <a href="{{ filename }}{{ page_number }}.html" class="pagination__number active">{{ page_number }}</a>
+                <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
+                <a href="{{ filename }}{{ page_number+2 }}.html" class="pagination__number">{{ page_number+2 }}</a>
+                <div class="pagination__number">...</div>
+                <a href="{{ filename }}{{ pages_count }}.html" class="pagination__number">{{ pages_count }}</a>
+            </nav>
+        {% endif %}
     <footer>
         <div class="div footer__column">
             <div class="footer__logo logo">

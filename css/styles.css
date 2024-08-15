@@ -183,7 +183,7 @@ header {
     margin-left: 71px;
     margin-top: 35px;
     width: 392px;
-    /* height: 87px; */
+    margin-bottom: 22px;
     box-sizing: border-box;
 }
 .pagination__number {
@@ -235,4 +235,26 @@ footer {
     color: white;
     font-size: 24px;
     box-sizing: border-box;
+}
+
+
+.pagination__number.active{
+    position: relative;
+
+}
+
+
+.pagination__number.active::after{
+    position: absolute;
+    content: '';
+    display: block;
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
+    top: 3px;
+}
+
+.pagination.last {
+    width: 200px;
 }
