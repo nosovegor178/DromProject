@@ -177,12 +177,14 @@ header {
 }
 .cars__card__column__main {
     flex-direction: column;
+    width: 30%;
     box-sizing: border-box;
     margin-left: 51px;
     margin-right: 51px;
 }
 .cars__card__column__specifications {
     flex-direction: column;
+    width: 30%;
     box-sizing: border-box;
     margin-left: 51px;
     margin-right: 51px;
