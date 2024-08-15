@@ -35,7 +35,7 @@
         <div class="header__subtitle">
             Найди свою машину среди тысяч объявлений, удобно отсортированных по маркам
         </div>
-        <a href="#" class="header__button">
+        <a href="#makes" class="header__button">
             <div>Подобрать автомобиль</div>
         </a>
     </header>
@@ -45,7 +45,7 @@
         </div>
         <div class="makes__cards">
             {% for mark in marks %}
-                <a href="../{{ mark }}/{{ mark }}1.html" class="makes__card"><p class="makes__card__text">{{ mark }}</p></a> 
+                <a name="makes" href="../{{ mark }}/{{ mark }}1.html" class="makes__card"><p class="makes__card__text">{{ mark }}</p></a> 
             {% endfor %}
         </div>
     </div>
@@ -91,28 +91,6 @@
                 </div>
             {% endfor %}
     </div>
-    <!-- <nav class="pagination">
-
-        {% if page_number > 1 and page_number < pages_count %}
-            <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
-            <a href="{{ filename }}{{ page_number }}.html" class="pagination__number">{{ page_number }}</a>
-            <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
-        {% elif page_number == pages_count %}
-            <a href="{{ filename }}{{ page_number-2 }}.html" class="pagination__number">{{ page_number-2 }}</a>
-            <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
-            <a href="{{ filename }}{{ page_number }}.html" class="pagination__number">{{ page_number }}</a>
-        {% else %}
-            <a href="{{ filename }}{{ page_number }}.html" class="pagination__number">{{ page_number }}</a>
-            <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
-            <a href="{{ filename }}{{ page_number+2 }}.html" class="pagination__number">{{ page_number+2 }}</a>
-        {% endif %}
-        <div class="pagination__number">
-            ...
-        </div>
-        <a href="{{ filename }}{{ pages_count }}.html" class="pagination__number">
-            {{ pages_count }}
-        </a>
-    </nav> -->
         {% if page_number > 1 and page_number < pages_count %}
             <nav class="pagination">
                 <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
