@@ -112,7 +112,9 @@ header {
 }
 .makes__cards {
     display: flex;
-    flex-wrap: wrap;
+    @media (max-width: 1440px) {
+        flex-wrap: wrap;
+    }
     justify-content: space-evenly;
     width: 100%;
 }
@@ -177,12 +179,24 @@ header {
 }
 .cars__card__column__main {
     flex-direction: column;
+    @media (min-width: 750px) {
+        width: 30%;
+    }
+    @media (max-width: 750px) {
+        width: 100%
+    }
     box-sizing: border-box;
     margin-left: 51px;
     margin-right: 51px;
 }
 .cars__card__column__specifications {
     flex-direction: column;
+    @media (min-width: 750px) {
+        width: 30%;
+    }
+    @media (max-width: 750px) {
+        width: 100%
+    }
     box-sizing: border-box;
     margin-left: 51px;
     margin-right: 51px;
