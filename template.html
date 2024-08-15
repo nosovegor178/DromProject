@@ -45,76 +45,72 @@
         </div>
         <div class="makes__cards">
             {% for mark in marks %}
-                <a href="{{ mark }}.html" class="makes__card"><p class="makes__card__text">{{ mark }}</p></a> 
+                <a href="../{{ mark }}/{{ mark }}1.html" class="makes__card"><p class="makes__card__text">{{ mark }}</p></a> 
             {% endfor %}
-            <!-- {% for mark in marks %}
-                {% if mark == marks[page_number] %}
-                  <li class="page-item active"><a class="page-link" href="{{ mark }}.html">{{ mark }}</a></li>
-                {% else %}
-                  <li class="page-item"><a class="page-link" href="{{ mark }}.html">{{ mark }}</a></li>
-                {% endif %}
-            {% endfor %} -->
         </div>
     </div>
     <div class="cars">
         <div class="title">
             Все объявления
         </div>
-        <div class="cars_cards">
-            <a href="#" class="cars__card">
-                <img src="../images/background-1.jpg" alt="" class="cars__card__image">
-                <div class="cars__card__column__main">
-                    <div class="cars__card__title">
-                        Lada Niva
-                    </div>
-                    <div class="cars__card__title">
-                        300000 руб.
-                    </div>
+            {% for car in cars %}
+                <div class="cars_cards">
+                    <a href="{{ car.drom_link }}" class="cars__card">
+                        <img src="../../images/background-1.jpg" alt="" class="cars__card__image">
+                        <div class="cars__card__column__main">
+                            <div class="cars__card__title">
+                                {{ car.model }}
+                            </div>
+                            <div class="cars__card__title">
+                                {{ car.price }}
+                            </div>
+                        </div>
+                        <div class="cars__card__column__specifications">
+                            <div class="cars__card__text">
+                                Год: {{ car.year }}
+                            </div>
+                            <div class="cars__card__text">
+                                Объем двигателя: {{ car.engine_info }}
+                            </div>
+                            <div class="cars__card__text">
+                                {{ car.horsepower }}
+                            </div>
+                        </div>
+                        <div class="cars__card__column__specifications">
+                            <div class="cars__card__text">
+                                {{ car.transmission }}
+                            </div>
+                            <div class="cars__card__text">
+                                Привод: {{ car.drive }}
+                            </div>
+                            <div class="cars__card__text">
+                                Пробег: {{ car.mileage }}
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="cars__card__column__specifications">
-                    <div class="cars__card__text">
-                        2007
-                    </div>
-                    <div class="cars__card__text">
-                        2007
-                    </div>
-                    <div class="cars__card__text">
-                        2007
-                    </div>
-                </div>
-                <div class="cars__card__column__specifications">
-                    <div class="cars__card__text">
-                        2007
-                    </div>
-                    <div class="cars__card__text">
-                        2007
-                    </div>
-                    <div class="cars__card__text">
-                        2007
-                    </div>
-                </div>
-            </a>
-        </div>
+            {% endfor %}
     </div>
-    <nav class="pagination">
-        <a href="#" class="pagination__number">
-            <div class="pagination__number__circle">
-            </div>
-            1
-        </a>
-        <a href="#" class="pagination__number">
-            2
-        </a>
-        <a href="#" class="pagination__number">
-            3
-        </a>
-        <div class="pagination__number">
-            ...
-        </div>
-        <a href="#" class="pagination__number">
-            100
-        </a>
-    </nav>
+    <nav aria-label="Page navigation" style="margin-top: 2rem; margin-left: 4rem;">
+        <ul class="pagination">
+            {% if page_number > 1 and page_number < pages_count %}
+                <li class="page-item"><a class="page-link" href="{{ filename }}{{ page_number-1 }}.html">{{ page_number-1 }}</a></li>
+                <li class="page-item"><a class="page-link" href="{{ filename }}{{ page_number }}.html">{{ page_number }}</a></li>
+                <li class="page-item"><a class="page-link" href="{{ filename }}{{ page_number+1 }}.html">{{ page_number+1 }}</a></li>
+            {% elif page_number == pages_count %}
+                <li class="page-item"><a class="page-link" href="{{ filename }}{{ page_number-2 }}.html">{{ page_number-2 }}</a></li>
+                <li class="page-item"><a class="page-link" href="{{ filename }}{{ page_number-1 }}.html">{{ page_number-1 }}</a></li>
+                <li class="page-item"><a class="page-link" href="{{ filename }}{{ page_number }}.html">{{ page_number }}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="{{ filename }}{{ page_number }}.html">{{ page_number }}</a></li>
+                <li class="page-item"><a class="page-link" href="{{ filename }}{{ page_number+1 }}.html">{{ page_number+1 }}</a></li>
+                <li class="page-item"><a class="page-link" href="{{ filename }}{{ page_number+2 }}.html">{{ page_number+2 }}</a></li>
+            {% endif %}
+            <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+            
+            <li class="page-item"><a class="page-link" href="{{ filename }}{{ pages_count }}.html">{{ pages_count }}</a></li>
+        </ul>
+      </nav>
     <footer>
         <div class="div footer__column">
             <div class="footer__logo logo">
