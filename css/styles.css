@@ -1,7 +1,7 @@
 @font-face {
 	font-family: 'Shentox-Regular'; 
 	src: local('Shentox-Regular'),
-		url(\fonts\Shentox-Regular\ \(RUS\ by\ Slavchansky\)_0.ttf); 
+		url(../fonts/Shentox-Regular\ \(RUS\ by\ Slavchansky\)_0.ttf); 
 }
 html {
     font-family: 'Shentox-Regular';
