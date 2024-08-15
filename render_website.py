@@ -23,7 +23,6 @@ def on_reload():
     marks = []
     car_files = []
     for root, dirs, files in os.walk("cars"):
-        car_images = []
         for dir in dirs:
             if dir != "media":
                 marks.append(dir)
@@ -50,11 +49,7 @@ def on_reload():
             )
             with open(f"{new_path}/{filename}{page_number}.html", "w", encoding="utf8") as file:
                 file.write(rendered_page)
-
-    # print(marks)
-    # print(car_files)
-    print("Site rebuilt")
-
+                
 
 on_reload()
 server = Server()
