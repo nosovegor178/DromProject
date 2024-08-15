@@ -112,7 +112,9 @@ header {
 }
 .makes__cards {
     display: flex;
-    flex-wrap: wrap;
+    @media (max-width: 1440px) {
+        flex-wrap: wrap;
+    }
     justify-content: space-evenly;
     width: 100%;
 }
