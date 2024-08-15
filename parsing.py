@@ -82,16 +82,19 @@ def parse_car_cards(car_kind):
 
 
 def main():
+    cur_path = os.path.dirname(__file__)
     car_kinds = ["acura", "baic", "citroen", "belgee", "porsche", "jaguar"]
     os.makedirs("cars", exist_ok=True)
     os.chdir("cars")
+    print(cur_path)
+    car_kinds = ['acura']
     for car_kind in car_kinds:
         os.makedirs(car_kind, exist_ok=True)
         parsed_cards = parse_car_cards(car_kind)
         for card_number, parsed_card in enumerate(parsed_cards):
             filename = f'{car_kind}_{card_number+1}.png'
             download_image(car_kind, filename, parsed_card["image_url"])
-            parsed_card["image_url"] = f"cars/{car_kind}/media/{filename}"
+            parsed_card["image_url"] = os.path.join(cur_path, f"cars\\{car_kind}\\media\\{filename}")
         download_car_cards(parsed_cards, f'{car_kind}.json', car_kind)
 
 
