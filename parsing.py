@@ -83,7 +83,7 @@ def parse_car_cards(car_kind):
 
 def main():
     cur_path = os.path.dirname(__file__)
-    car_kinds = ["acura", "baic", "citroen", "belgee", "porsche", "jaguar"]
+    car_kinds = ["daewoo", "baic", "citroen", "belgee", "porsche", "jaguar"]
     os.makedirs("cars", exist_ok=True)
     os.chdir("cars")
     for car_kind in car_kinds:
