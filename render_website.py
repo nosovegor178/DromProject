@@ -4,10 +4,7 @@ import os
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from livereload import Server
 from more_itertools import chunked
-
-
-def get_num(text):
-    return int(''.join(filter(str.isdigit, text)))
+import random
 
 
 def on_reload():
@@ -36,8 +33,8 @@ def on_reload():
         with codecs.open(f"cars/{path}/{car_file}", "r", "utf_8_sig") as car_info:
             cars_params = car_info.read()
         filename, suffix = os.path.splitext(car_file)
-        cars_params = json.loads(cars_params)
-        cars_params = list(chunked(cars_params, 20))
+        all_cars_params = json.loads(cars_params)
+        cars_params = list(chunked(all_cars_params, 20))
         pages_count = len(cars_params)
         for page_number, car_params in enumerate(cars_params, 1): 
             rendered_page = template.render(
@@ -49,7 +46,20 @@ def on_reload():
             )
             with open(f"{new_path}/{filename}{page_number}.html", "w", encoding="utf8") as file:
                 file.write(rendered_page)
-                
+        
+    index_path = f'{pages_path}/index'
+    os.makedirs(index_path, exist_ok=True)
+    print(all_cars_params)
+    random_cars = random.sample(all_cars_params, 20)
+    rendered_page = template.render(
+        page_number=1,
+        pages_count=1,
+        marks=marks,
+        cars=random_cars,
+    )
+    with open("car_pages/index/index.html", "w", encoding="utf8") as file:
+        file.write(rendered_page)
+    
 
 on_reload()
 server = Server()
