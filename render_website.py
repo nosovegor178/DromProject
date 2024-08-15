@@ -38,7 +38,7 @@ def on_reload():
             cars_params = car_info.read()
         filename, suffix = os.path.splitext(car_file)
         cars_params = json.loads(cars_params)
-        cars_params = list(chunked(cars_params, 3))
+        cars_params = list(chunked(cars_params, 20))
         pages_count = len(cars_params)
         for page_number, car_params in enumerate(cars_params, 1): 
             rendered_page = template.render(
