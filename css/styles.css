@@ -60,7 +60,7 @@ header {
   }
 .header__subtitle {
     margin-left: 115px;
-    margin-top: 20px;
+    margin-top: 5px;
     color: #FFFEFE;
     font-size: 20px;
     font-family: Shentox; 
@@ -105,7 +105,8 @@ header {
 }
 .makes__card {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin: 76px 0;
+    margin-left: 76px;
+    margin: 34px;
     width: 220px;
     height: 90px;
     border-radius: 15px;
@@ -131,9 +132,9 @@ header {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin: 0 30px;
 }
 .cars__card {
-    margin: 0 30px;
     width: 100%;
     height: 237px;
     border-radius: 15px;
@@ -162,14 +163,12 @@ header {
 }
 .cars__card__column__main {
     flex-direction: column;
-    width: 30%;
-    /* margin-right: 230px; */
+    width: 40%;
     box-sizing: border-box;
 }
 .cars__card__column__specifications {
     flex-direction: column;
     width: 30%;
-    /* margin-right: 50px; */
     box-sizing: border-box;
 }
 .cars__card__title {
@@ -182,9 +181,9 @@ header {
     display: flex;
     justify-content: space-between;
     margin-left: 71px;
-    margin-top: 50px;
+    margin-top: 35px;
     width: 392px;
-    height: 87px;
+    /* height: 87px; */
     box-sizing: border-box;
 }
 .pagination__number {
@@ -213,7 +212,7 @@ footer {
     font-family: 'Shentox-Regular';
     font-size: 1.92em;
     color: white;
-    width: 318px;
+    width: 13.25em;
     text-decoration: none;
     box-sizing: border-box;
 
