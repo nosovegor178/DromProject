@@ -134,7 +134,7 @@ header {
 }
 .cars__card {
     margin: 0 30px;
-    width: 1380px;
+    width: 100%;
     height: 237px;
     border-radius: 15px;
     display: flex;
@@ -162,12 +162,14 @@ header {
 }
 .cars__card__column__main {
     flex-direction: column;
-    margin-right: 230px;
+    width: 30%;
+    /* margin-right: 230px; */
     box-sizing: border-box;
 }
 .cars__card__column__specifications {
     flex-direction: column;
-    margin-right: 50px;
+    width: 30%;
+    /* margin-right: 50px; */
     box-sizing: border-box;
 }
 .cars__card__title {
@@ -180,6 +182,7 @@ header {
     display: flex;
     justify-content: space-between;
     margin-left: 71px;
+    margin-top: 50px;
     width: 392px;
     height: 87px;
     box-sizing: border-box;
