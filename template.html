@@ -83,9 +83,11 @@
                             <div class="cars__card__text">
                                 Привод: {{ car.drive }}
                             </div>
-                            <div class="cars__card__text">
-                                Пробег: {{ car.mileage }}
-                            </div>
+                            {% if car.mileage %}
+                                <div class="cars__card__text">
+                                    Пробег: {{ car.mileage }}
+                                </div>
+                            {% endif %}
                         </div>
                     </a>
                 </div>
@@ -120,6 +122,10 @@
                 <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
                 <div class="pagination__number">...</div>
                 <a href="{{ filename }}{{ pages_count }}.html" class="pagination__number">{{ pages_count }}</a>
+            </nav>
+        {% elif pages_count==1 %}
+            <nav class="pagination">
+                <a href="{{ filename }}{{ page_number }}.html" class="pagination__number active">{{ page_number }}</a>
             </nav>
         {% elif page_number == pages_count %}
             <nav class="pagination last">
