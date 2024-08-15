@@ -50,9 +50,6 @@ def on_reload():
             )
             with open(f"{new_path}/{filename}{page_number}.html", "w", encoding="utf8") as file:
                 file.write(rendered_page)
-
-    # print(marks)
-    # print(car_files)
     print("Site rebuilt")
 
 
