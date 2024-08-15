@@ -16,51 +16,62 @@ header {
     width: 100%;
     height: 100vh;
 }
-.header__logo {
-    font-family: 'Shentox-Regular';
-    font-size: 1.92em;
-    color: white;
-    width: 318px;
-    text-decoration: none;
-    padding-left: 47px;
-    box-sizing: border-box;
-}
 .header__menu {
     background-color: rgba(176, 176, 176, 0.66);
-    width:100%;
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
     box-sizing: border-box;
 } 
+.header__nav {
+    display: flex;
+    width: 303px;
+    margin: 0 47px;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+
+}
+.header__logo {
+    font-family: 'Shentox-Regular';
+    @media (min-width: 480px) {
+        font-size: 46px;
+    }
+    @media (max-width: 480px) {
+        font-size: 36px;
+    }
+    color: white;
+    width: 318px;
+    text-decoration: none;
+    margin-left: 47px;
+    box-sizing: border-box;
+}
 .header__link {
     font-family: 'Shentox-Regular';
     color: white;
     text-decoration: none;
     font-size: 24px;
 }
-.header__nav {
-    display: flex;
-    width: 303px;
-    align-items: center;
-    justify-content: space-between;
-}
 .header__favourites {
-    padding-right: 47px;
+    margin: 0 47px;
     box-sizing: border-box;
 }
 .header__title {
-    margin-left: 115px;
+    margin-left: 9%;
+    margin-right: 9%;
     margin-top: 80px;
-    color: #FFFEFE;
+    color: white;
     font-size: 30px;
     font-family: Shentox;
     box-sizing: border-box;
   }
 .header__subtitle {
-    margin-left: 115px;
-    margin-top: 20px;
+    margin-left: 9%;
+    margin-right: 9%;
+    margin-top: 5px;
     color: #FFFEFE;
     font-size: 20px;
     font-family: Shentox; 
@@ -70,7 +81,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 115px;
+    margin-left: 9%;
+    margin-right: 9%;
     margin-top: 30px;
     width: 300px;
     height: 50px;
@@ -100,12 +112,14 @@ header {
 }
 .makes__cards {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     width: 100%;
 }
 .makes__card {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin: 76px 0;
+    margin-left: 76px;
+    margin: 34px;
     width: 220px;
     height: 90px;
     border-radius: 15px;
@@ -131,13 +145,15 @@ header {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin: 0 30px;
 }
 .cars__card {
-    margin: 0 30px;
     width: 100%;
-    height: 237px;
-    border-radius: 15px;
+    height: fit-content;
     display: flex;
+    @media (max-width: 1280px) {
+        flex-wrap: wrap;
+    }
     align-items: center;
     font-family: 'Shentox-Regular';
     color: black;
@@ -153,7 +169,6 @@ header {
     width: 370px;
     height: 194px;
     margin-left: 51px;
-    margin-right: 41px;
     margin-top: 21px;
     margin-bottom: 21px;
     object-fit: cover;
@@ -162,18 +177,19 @@ header {
 }
 .cars__card__column__main {
     flex-direction: column;
-    width: 30%;
-    /* margin-right: 230px; */
     box-sizing: border-box;
+    margin-left: 51px;
+    margin-right: 51px;
 }
 .cars__card__column__specifications {
     flex-direction: column;
-    width: 30%;
-    /* margin-right: 50px; */
+    box-sizing: border-box;
+    margin-left: 51px;
+    margin-right: 51px;
     box-sizing: border-box;
 }
 .cars__card__title {
-    font-size: 40px
+    font-size: 40px;
 }
 .cars__card__text {
     font-size: 24px
@@ -182,7 +198,7 @@ header {
     display: flex;
     justify-content: space-between;
     margin-left: 71px;
-    margin-top: 50px;
+    margin-top: 35px;
     width: 392px;
     margin-bottom: 22px;
     box-sizing: border-box;
@@ -206,23 +222,32 @@ header {
 footer {
     background-color: #7A7A7A;
     display: flex;
+    @media (max-width: 1080px) {
+        flex-wrap: wrap;
+    }
+    justify-content: space-around;
     width: 100%;
     height: 296px;
 }
 .footer__logo {
     font-family: 'Shentox-Regular';
-    font-size: 1.92em;
+    @media (min-width: 480px) {
+        font-size: 46px;
+    }
+    @media (max-width: 480px) {
+        font-size: 36px;
+    }
     color: white;
     width: 318px;
     text-decoration: none;
     box-sizing: border-box;
-
 }
 .footer__column {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-left: 47px;
+    margin-right: 47px;
 }
 .footer__text {
     font-family: 'Shentox-Regular';
@@ -237,14 +262,9 @@ footer {
     font-size: 24px;
     box-sizing: border-box;
 }
-
-
 .pagination__number.active{
     position: relative;
-
 }
-
-
 .pagination__number.active::after{
     position: absolute;
     content: '';
@@ -255,7 +275,6 @@ footer {
     border-radius: 50%;
     top: 3px;
 }
-
 .pagination.last {
     width: 200px;
 }
