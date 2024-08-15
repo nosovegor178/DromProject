@@ -112,7 +112,8 @@ header {
 }
 .makes__cards {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     width: 100%;
 }
 .makes__card {
@@ -148,9 +149,11 @@ header {
 }
 .cars__card {
     width: 100%;
-    height: 237px;
-    border-radius: 15px;
+    height: fit-content;
     display: flex;
+    @media (max-width: 1280px) {
+        flex-wrap: wrap;
+    }
     align-items: center;
     font-family: 'Shentox-Regular';
     color: black;
@@ -166,7 +169,6 @@ header {
     width: 370px;
     height: 194px;
     margin-left: 51px;
-    margin-right: 41px;
     margin-top: 21px;
     margin-bottom: 21px;
     object-fit: cover;
@@ -175,16 +177,19 @@ header {
 }
 .cars__card__column__main {
     flex-direction: column;
-    width: 40%;
     box-sizing: border-box;
+    margin-left: 51px;
+    margin-right: 51px;
 }
 .cars__card__column__specifications {
     flex-direction: column;
-    width: 30%;
+    box-sizing: border-box;
+    margin-left: 51px;
+    margin-right: 51px;
     box-sizing: border-box;
 }
 .cars__card__title {
-    font-size: 40px
+    font-size: 40px;
 }
 .cars__card__text {
     font-size: 24px
