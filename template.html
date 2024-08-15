@@ -88,7 +88,30 @@
                 </div>
             {% endfor %}
     </div>
-    <nav aria-label="Page navigation" style="margin-top: 2rem; margin-left: 4rem;">
+    <nav class="pagination">
+        <!-- <div class="pagination__number__circle">
+        </div> -->
+        {% if page_number > 1 and page_number < pages_count %}
+            <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
+            <a href="{{ filename }}{{ page_number }}.html" class="pagination__number">{{ page_number }}</a>
+            <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
+        {% elif page_number == pages_count %}
+            <a href="{{ filename }}{{ page_number-2 }}.html" class="pagination__number">{{ page_number-2 }}</a>
+            <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
+            <a href="{{ filename }}{{ page_number }}.html" class="pagination__number">{{ page_number }}</a>
+        {% else %}
+            <a href="{{ filename }}{{ page_number }}.html" class="pagination__number">{{ page_number }}</a>
+            <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
+            <a href="{{ filename }}{{ page_number+2 }}.html" class="pagination__number">{{ page_number+2 }}</a>
+        {% endif %}
+        <div class="pagination__number">
+            ...
+        </div>
+        <a href="{{ filename }}{{ pages_count }}.html" class="pagination__number">
+            {{ pages_count }}
+        </a>
+    </nav>
+    <!-- <nav aria-label="Page navigation" style="margin-top: 2rem; margin-left: 4rem;">
         <ul class="pagination">
             {% if page_number > 1 and page_number < pages_count %}
                 <li class="page-item"><a class="page-link" href="{{ filename }}{{ page_number-1 }}.html">{{ page_number-1 }}</a></li>
@@ -107,7 +130,7 @@
             
             <li class="page-item"><a class="page-link" href="{{ filename }}{{ pages_count }}.html">{{ pages_count }}</a></li>
         </ul>
-      </nav>
+      </nav> -->
     <footer>
         <div class="div footer__column">
             <div class="footer__logo logo">
