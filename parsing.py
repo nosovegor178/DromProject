@@ -92,7 +92,7 @@ def main():
         for card_number, parsed_card in enumerate(parsed_cards):
             filename = f'{car_kind}_{card_number+1}.png'
             download_image(car_kind, filename, parsed_card["image_url"])
-            parsed_card["image_url"] = os.path.join(cur_path, f"cars\\{car_kind}\\media\\{filename}")[3:]
+            parsed_card["image_url"] = f"cars/{car_kind}/media/{filename}"
         download_car_cards(parsed_cards, f'{car_kind}.json', car_kind)
 
 
