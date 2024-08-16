@@ -62,9 +62,9 @@ def on_reload():
         page_number=1,
         pages_count=1,
         marks=marks,
-        cars=random_cars,
+        cars=random_cars
     )
-    with open("index.html", "w", encoding="utf8") as file:
+    with open("car_pages/index/index.html", "w", encoding="utf8") as file:
         file.write(rendered_page)
     
 
