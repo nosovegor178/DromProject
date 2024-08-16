@@ -168,7 +168,9 @@ header {
     background-color: #f0f0f0;
 }
 .cars__card__image {
-    width: 370px;
+    display: block;
+    width: 100%;
+    max-width: 250px;
     height: 194px;
     margin-left: 51px;
     margin-top: 21px;
