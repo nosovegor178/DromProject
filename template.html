@@ -93,7 +93,20 @@
                 </div>
             {% endfor %}
     </div>
-        {% if page_number > 1 and page_number < pages_count %}
+        {% if page_number == pages_count-2 %}
+            <nav class="pagination last">
+                <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
+                <a href="{{ filename }}{{ page_number }}.html" class="pagination__number active">{{ page_number }}</a>
+                <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
+                <a href="{{ filename }}{{ pages_count }}.html" class="pagination__number">{{ pages_count }}</a>
+            </nav>
+        {% elif page_number == pages_count-1 %}
+            <nav class="pagination last">
+                <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
+                <a href="{{ filename }}{{ page_number }}.html" class="pagination__number active">{{ page_number }}</a>
+                <a href="{{ filename }}{{ page_number+1 }}.html" class="pagination__number">{{ page_number+1 }}</a>
+            </nav>
+        {% elif page_number > 1 and page_number < pages_count %}
             <nav class="pagination">
                 <a href="{{ filename }}{{ page_number-1 }}.html" class="pagination__number">{{ page_number-1 }}</a>
                 <a href="{{ filename }}{{ page_number }}.html" class="pagination__number active">{{ page_number }}</a>
