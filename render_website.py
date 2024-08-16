@@ -49,8 +49,15 @@ def on_reload():
         
     index_path = f'{pages_path}/index'
     os.makedirs(index_path, exist_ok=True)
-    print(all_cars_params)
-    random_cars = random.sample(all_cars_params, 20)
+    random_dirs = random.sample(os.listdir('cars'), 4)
+    random_cars = []
+    for random_dir in random_dirs:
+        path = f"cars/{random_dir}/{random_dir}.json"
+        with codecs.open(path, "r", "utf_8_sig") as car_info:
+            cars_params = car_info.read()
+        cars_params = json.loads(cars_params)
+        random_cars.extend(random.sample(cars_params, 5))
+        random.shuffle(random_cars)
     rendered_page = template.render(
         page_number=1,
         pages_count=1,
