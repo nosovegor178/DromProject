@@ -64,7 +64,7 @@ def on_reload():
         marks=marks,
         cars=random_cars,
     )
-    with open("car_pages/index/index.html", "w", encoding="utf8") as file:
+    with open("index.html", "w", encoding="utf8") as file:
         file.write(rendered_page)
     
 
